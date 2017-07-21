@@ -41,7 +41,7 @@ RUN bin/start && \
     bin/client -r 10 -d 5  "feature:repo-add mvn:cool.pandora/pandora-karaf/0.0.1/xml/features" && \
     bin/client -r 10 -d 5  "feature:repo-add activemq LATEST" && \
     bin/client -r 10 -d 5  "feature:repo-add mvn:org.fcrepo.camel/toolbox-features/${TOOLBOX_VERSION}/xml/features" && \
-    bin/client -r 10 -d 5  "feature:install exts-oai" && \
+    bin/client -r 10 -d 5  "feature:install exts-sparqler" && \
     sleep 15 && \
     bin/stop
 

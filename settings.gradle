@@ -1,6 +1,6 @@
-rootProject.name = 'apix-oai'
+rootProject.name = 'apix-sparqler'
 include ':pandora-karaf'
-include ':exts-oai'
+include ':exts-sparqler'
 
 project(':pandora-karaf').projectDir = "$rootDir/pandora-karaf" as File
-project(':exts-oai').projectDir = "$rootDir/exts-oai" as File
+project(':exts-sparqler').projectDir = "$rootDir/exts-sparqler" as File

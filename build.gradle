@@ -19,7 +19,7 @@ plugins {
 apply plugin: 'com.bmuschko.nexus'
 apply plugin: 'io.codearte.nexus-staging'
 
-allprojects  {
+allprojects {
     apply plugin: 'maven'
 
     group = 'cool.pandora'
@@ -32,7 +32,8 @@ allprojects  {
 
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+            options.compilerArgs.add("-Xlint:unchecked")
+            options.compilerArgs.add("-Xlint:deprecation")
         }
     }
 
@@ -82,18 +83,20 @@ subprojects {
         derbyVersion = '10.12.1.1'
         fcrepoCamelVersion = '4.5.0'
         fcrepoCamelToolboxVersion = '4.7.1'
+        guavaVersion = '18.0'
         hk2Version = '2.4.0'
         httpclientVersion = '4.5.2'
         httpcoreVersion = '4.4.5'
-        jacksonVersion = '2.7.5'
+        jacksonVersion = '2.8.9'
         jenaVersion = '3.1.1'
         junitVersion = '4.12'
-        jsonldVersion = '0.8.3'
-        logbackVersion = '1.1.7'
+        jsonldVersion = '0.10.0'
+        logbackVersion = '1.2.3'
         marmottaVersion = '3.3.0'
         postgresqlVersion = '9.4.1208'
+        rdf4jVersion = '2.2.2'
         saxonVersion = '9.6.0-7'
-        slf4jVersion = '1.7.21'
+        slf4jVersion = '1.7.25'
         springVersion = '4.1.7.RELEASE'
         woodstoxVersion = '4.4.1'
         xercesVersion = '2.11.0'
@@ -193,7 +196,7 @@ subprojects {
         }
     }
 
- //   signing {
+    //   signing {
     //      sign configurations.archives
     //   }
 
@@ -225,28 +228,6 @@ subprojects {
 
                 developers {
                     developer {
-                        id 'acoburn'
-                        name 'Aaron Coburn'
-                        email 'acoburn @ (domain of organization url)'
-                        organization 'Amherst College'
-                        organizationUrl 'https://www.amherst.edu'
-                        roles {
-                            role 'developer'
-                        }
-                        timezone '-5'
-                    }
-                    developer {
-                        id 'bseeger'
-                        name 'Bethany Seeger'
-                        email 'bseeger @ (domain of organization url)'
-                        organization 'Amherst College'
-                        organizationUrl 'https://www.amherst.edu'
-                        roles {
-                            role 'developer'
-                        }
-                        timezone '-5'
-                    }
-                    developer {
                         id 'christopher-johnson'
                         name 'Christopher Johnson'
                         email 'chjohnson @ (domain of organization url)'
@@ -270,7 +251,6 @@ subprojects {
                     license {
                         name 'Apache License, Version 2.0'
                         url 'http://www.apache.org/licenses/LICENSE-2.0'
-                        comments 'Copyright (c) 2016 Amherst College'
                     }
                 }
             }
@@ -288,7 +268,7 @@ configurations {
 
 
 dependencies {
-    buildToolsConfig "edu.amherst.acdc:acrepo-build-tools:0.1.0"
+    buildToolsConfig "cool.pandora:pandora-build-tools:0.1.0"
 }
 
 task processBuildTools(type: Copy) {
@@ -319,8 +299,8 @@ nexus {
 }
 
 task docs(type: Javadoc) {
-    source subprojects.collect {project -> project.sourceSets.main.allJava }
-    classpath = files(subprojects.collect {project -> project.sourceSets.main.compileClasspath})
+    source subprojects.collect { project -> project.sourceSets.main.allJava }
+    classpath = files(subprojects.collect { project -> project.sourceSets.main.compileClasspath })
     destinationDir = new File(projectDir, "docs/${version}")
 }
 
@@ -331,11 +311,11 @@ def homeDir = System.getProperty('user.home')
 def mavenLocal = new File(homeDir, ".m2/repository/cool/pandora")
 
 docker {
-    name 'pandorasystems/exts-oai'
+    name 'pandorasystems/exts-sparqler'
     tags 'latest'
     dockerfile file('Dockerfile')
     copySpec.from("${buildDir}/maven").into("repository/cool/pandora")
-    files "${projectDir}/cfg","entrypoint.sh"
+    files "${projectDir}/cfg", "entrypoint.sh"
     buildArgs([BUILD_VERSION: 'version'])
     labels(['key': 'value'])
     pull true

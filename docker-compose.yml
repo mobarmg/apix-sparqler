@@ -29,9 +29,9 @@ services:
       timeout: 20s
       retries: 10
 
-  exts-oai:
-    image: pandorasystems/exts-oai
-    container_name: exts-oai
+  exts-sparqler:
+    image: pandorasystems/exts-sparqler
+    container_name: exts-sparqler
     ports:
       - "9104:9104"
       - "5008:5008"
@@ -56,7 +56,7 @@ services:
       - fcrepo:localhost
 
   fcrepo:
-    image: pandorasystems/fcrepo:4.8.0
+    image: pandorasystems/fcrepo:4.8.1
     container_name: fcrepo
     environment:
       CATALINA_OPTS: -Dfcrepo.home=/mnt/fcrepo-data -Dfcrepo.spring.configuration=file:/etc/spring/fcrepo-config.xml
@@ -69,7 +69,7 @@ services:
       - fcrepo-volume:/mnt/fcrepo-data
 
   fuseki:
-    image: pandorasystems/fuseki:2.4.3
+    image: pandorasystems/fuseki:2.4.4
     container_name: fuseki
     ports:
       - "3030:3030"
@@ -78,12 +78,12 @@ services:
 
 volumes:
   fcrepo-volume:
-   # driver_opts:
-   #       type: none
-   #       device: /mnt/pandora-data/fcrepo-data
-   #       o: bind
+    driver_opts:
+          type: none
+          device: /mnt/pandora-data/fcrepo-data
+          o: bind
   fuseki-volume:
-   # driver_opts:
-   #       type: none
-   #       device: /mnt/pandora-data/fuseki
-   #       o: bind
+    driver_opts:
+          type: none
+          device: /mnt/pandora-data/fuseki
+          o: bind

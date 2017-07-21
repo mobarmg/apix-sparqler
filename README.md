@@ -1,7 +1,7 @@
-APIX-OAI
+APIX-SPARQLER
 ===================================
 
-An API-X extension for OAI-PMH provider dissemination.
+An API-X extension for serializing SPARQL Results.
 
 Building
 --------
@@ -26,13 +26,13 @@ Execute Docker Compose
  ```sh     
     $ docker-compose up
   ```   
-Creating OAI Test Data
+Creating Test Data
 ----------------- 
-See [rdfxml-ingest](https://github.com/pan-dora/rdfxml-ingest)    
+See [modeller](https://github.com/pan-dora/modeller)    
 
-Check OAI Endpoint
+Check Sparqler Endpoint
 -----------------
 
 ```sh    
-    $ curl -sS 'http://localhost:9104/oai?verb=ListRecords&set=gmd'
+    $ curl -sS 'http://localhost:9104/sparqler?type=manifest&node=http://localhost:8080/fcrepo/rest/collection/some/node/manifest'
 ```

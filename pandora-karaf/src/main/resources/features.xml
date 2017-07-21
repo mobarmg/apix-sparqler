@@ -1,17 +1,59 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.3.0" name="pandora-exts-0.0.1">
-  <feature name="exts-oai" version="0.0.1">
-    <details>Installs the OAI-PMH service</details>
+    <feature name="exts-sparqler" version="0.0.1">
+        <details>Installs the SPARQL Router service</details>
 
-    <feature version="[2.18,3)">camel</feature>
-    <feature version="[2.18,3)">camel-blueprint</feature>
-    <feature version="[2.18,3)">camel-jetty9</feature>
-    <feature version="[2.18,3)">camel-saxon</feature>
-    <feature version="[4.5,5)">fcrepo-camel</feature>
-    <feature version="[2.18,3)">camel-http4</feature>
+        <feature version="[2.18,3)">camel</feature>
+        <feature version="[2.18,3)">camel-blueprint</feature>
+        <feature version="[2.18,3)">camel-jetty9</feature>
+        <feature version="[2.18,3)">camel-saxon</feature>
+        <feature version="[4.5,5)">fcrepo-camel</feature>
+        <feature version="[2.18,3)">camel-http4</feature>
+        <feature version="${project.version}" dependency="true">pandora-libs-jsonld</feature>
+        <feature version="${project.version}" dependency="true">pandora-libs-rdf4j</feature>
+        <bundle>mvn:cool.pandora/exts-sparqler/0.0.1</bundle>
 
-    <bundle>mvn:cool.pandora/exts-oai/0.0.1</bundle>
+        <configfile finalname="/etc/cool.pandora.exts.sparqler.cfg">
+            mvn:cool.pandora/exts-sparqler/0.0.1/cfg/configuration
+        </configfile>
+    </feature>
 
-    <configfile finalname="/etc/cool.pandora.exts.oai.cfg">mvn:cool.pandora/exts-oai/0.0.1/cfg/configuration</configfile>
-  </feature>
+    <feature name="pandora-libs-jsonld" version="${project.version}">
+        <details>Installs the JSON-LD related bundles</details>
+
+        <bundle>mvn:com.github.jsonld-java/jsonld-java/${jsonldVersion}</bundle>
+
+        <feature version="${project.version}" dependency="true">pandora-libs-jackson</feature>
+
+        <bundle dependency="true">mvn:org.apache.httpcomponents/httpclient-osgi/${httpclientVersion}</bundle>
+        <bundle dependency="true">mvn:org.apache.httpcomponents/httpcore-osgi/${httpcoreVersion}</bundle>
+        <bundle dependency="true">mvn:commons-codec/commons-codec/${commonsCodecVersion}</bundle>
+        <bundle dependency="true">mvn:commons-io/commons-io/${commonsIoVersion}</bundle>
+    </feature>
+
+    <feature name="pandora-libs-jackson" version="${project.version}">
+        <details>Installs the Jackson Libraries</details>
+
+        <bundle>mvn:com.fasterxml.jackson.core/jackson-core/${jacksonVersion}</bundle>
+        <bundle>mvn:com.fasterxml.jackson.core/jackson-annotations/${jacksonVersion}</bundle>
+        <bundle>mvn:com.fasterxml.jackson.core/jackson-databind/${jacksonVersion}</bundle>
+    </feature>
+
+    <feature name="pandora-libs-slf4j" version="${project.version}">
+        <details>Installs slf4j</details>
+
+        <bundle dependency="true">mvn:ch.qos.logback/logback-classic/${logbackVersion}</bundle>
+        <bundle dependency="true">mvn:ch.qos.logback/logback-core/${logbackVersion}</bundle>
+        <bundle dependency="true">mvn:org.slf4j/slf4j-api/${slf4jVersion}</bundle>
+    </feature>
+
+    <feature name="pandora-libs-rdf4j" version="${project.version}">
+        <details>Installs the RDF4J Libraries</details>
+        <feature version="${project.version}" dependency="true">pandora-libs-slf4j</feature>
+        <bundle>mvn:org.eclipse.rdf4j/rdf4j-runtime-osgi/${rdf4jVersion}</bundle>
+        <bundle dependency="true">mvn:org.mapdb/mapdb/1.0.9</bundle>
+        <bundle dependency="true">mvn:com.opencsv/opencsv/3.3</bundle>
+        <bundle dependency="true">mvn:com.spatial4j/spatial4j/0.4.1</bundle>
+        <bundle dependency="true">mvn:com.google.guava/guava/${guavaVersion}</bundle>
+    </feature>
 </features>
