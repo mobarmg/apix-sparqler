@@ -6,12 +6,10 @@ dependencies {
     compile group: 'org.apache.camel', name: 'camel-blueprint', version: camelVersion
     compile group: 'org.apache.camel', name: 'camel-saxon', version: camelVersion
     compile group: 'org.apache.camel', name: 'camel-http4', version: camelVersion
-    compile(group: 'org.fcrepo.camel', name: 'fcrepo-camel', version: fcrepoCamelVersion) {
-        exclude(module: 'slf4j-log4j12')
-    }
-    compile group: 'org.eclipse.rdf4j', name: 'rdf4j-rio-ntriples', version: '2.2.2'
-    compile group: 'org.eclipse.rdf4j', name: 'rdf4j-rio-api', version: '2.2.2'
-    compile group: 'org.eclipse.rdf4j', name: 'rdf4j-model', version: '2.2.2'
+    compile group: 'cool.pandora', name: 'jsonld-java', version: jsonldVersion
+    compile group: 'org.fcrepo.camel', name: 'fcrepo-camel', version: fcrepoCamelVersion
+    compile group: 'org.eclipse.rdf4j', name: 'rdf4j-runtime-osgi', version: rdf4jVersion
+
     testCompile group: 'junit', name: 'junit', version: junitVersion
     testCompile group: 'commons-io', name: 'commons-io', version: commonsIoVersion
     testCompile group: 'org.apache.camel', name: 'camel-test-blueprint', version: camelVersion
@@ -30,7 +28,7 @@ jar {
 }
 
 artifacts {
-    archives (file('build/cfg/main/cool.pandora.exts.sparqler.cfg')) {
+    archives(file('build/cfg/main/cool.pandora.exts.sparqler.cfg')) {
         classifier 'configuration'
         type 'cfg'
     }

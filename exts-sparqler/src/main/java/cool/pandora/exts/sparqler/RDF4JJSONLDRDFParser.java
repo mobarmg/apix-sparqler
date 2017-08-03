@@ -1,26 +1,50 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package cool.pandora.exts.sparqler;
 
 import com.github.jsonldjava.core.JsonLdError;
 import com.github.jsonldjava.core.RDFDataset;
-import org.eclipse.rdf4j.model.*;
-import org.eclipse.rdf4j.model.vocabulary.RDF;
-import org.eclipse.rdf4j.model.vocabulary.XMLSchema;
 
 import java.util.Optional;
 import java.util.Set;
+
+import com.github.jsonldjava.core.RDFParser;
+import org.eclipse.rdf4j.model.BNode;
+import org.eclipse.rdf4j.model.IRI;
+import org.eclipse.rdf4j.model.Literal;
+import org.eclipse.rdf4j.model.Model;
+import org.eclipse.rdf4j.model.Namespace;
+import org.eclipse.rdf4j.model.Resource;
+import org.eclipse.rdf4j.model.Statement;
+import org.eclipse.rdf4j.model.Value;
+import org.eclipse.rdf4j.model.vocabulary.RDF;
+import org.eclipse.rdf4j.model.vocabulary.XMLSchema;
+
 
 /**
  * Implementation of RDFParser for RDF4J-2.2.
  *
  * @author Peter Ansell
  */
-class RDF4JJSONLDRDFParser implements com.github.jsonldjava.core.RDFParser {
+class RDF4JJSONLDRDFParser implements RDFParser {
 
     public void setPrefix(RDFDataset result, String fullUri, String prefix) {
         result.setNamespace(fullUri, prefix);
     }
 
-    public void handleStatement(RDFDataset result, Statement nextStatement) {
+    private void handleStatement(RDFDataset result, Statement nextStatement) {
         // TODO: from a basic look at the code it seems some of these could be
         // null values for IRIs will probably break things further down the line
         // and i'm not sure yet if this should be something handled later on, or

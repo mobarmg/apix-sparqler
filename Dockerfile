@@ -1,7 +1,7 @@
-FROM pandoraframework/karaf:4.0.8
+FROM pandorasystems/karaf:4.0.9
 
 MAINTAINER Christopher Johnson <chjohnson39@gmail.com>
-LABEL description = "Provides a Karaf container configured with an OAI-PMH service"
+LABEL description = "Provides a Karaf container configured with an Sparqler service"
 
 ENV DEBUG_PORT 5008
 ENV JAVA_DEBUG_PORT=${DEBUG_PORT} \
@@ -12,7 +12,6 @@ ENV JAVA_DEBUG_PORT=${DEBUG_PORT} \
     FCREPO_HOST=fcrepo \
     FCREPO_PORT=8080 \
     FCREPO_CONTEXT_PATH=/fcrepo \
-    ACTIVEMQ_HOST=activemq \
     MAVEN_REPO=/build/repository
 
 ENV FCREPO_BASEURI=http://${FCREPO_HOST}:${FCREPO_PORT}/${FCREPO_CONTEXT_PATH}/rest
@@ -39,9 +38,8 @@ RUN \
 RUN bin/start && \
     bin/client -r 10 -d 5  "feature:repo-add camel ${CAMEL_VERSION}" && \
     bin/client -r 10 -d 5  "feature:repo-add mvn:cool.pandora/pandora-karaf/0.0.1/xml/features" && \
-    bin/client -r 10 -d 5  "feature:repo-add activemq LATEST" && \
-    bin/client -r 10 -d 5  "feature:repo-add mvn:org.fcrepo.camel/toolbox-features/${TOOLBOX_VERSION}/xml/features" && \
-    bin/client -r 10 -d 5  "feature:install exts-sparqler" && \
+    bin/client -r 10 -d 5  "feature:repo-add mvn:org.fcrepo.camel/fcrepo-camel/4.5.0/xml/features" && \
+    ##bin/client -r 10 -d 5  "feature:install exts-sparqler" && \
     sleep 15 && \
     bin/stop
 

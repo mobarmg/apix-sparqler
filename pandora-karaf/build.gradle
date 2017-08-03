@@ -1,4 +1,3 @@
-
 description = 'Karaf Provisioning Features for repository services'
 
 processResources {
@@ -7,7 +6,7 @@ processResources {
 }
 
 artifacts {
-    archives (file('build/resources/main/features.xml')) {
+    archives(file('build/resources/main/features.xml')) {
         classifier 'features'
         type 'xml'
     }
