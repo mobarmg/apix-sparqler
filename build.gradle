@@ -76,7 +76,7 @@ subprojects {
 
         /* Dependencies */
         activemqVersion = '5.14.1'
-        camelVersion = '2.18.0'
+        camelVersion = '2.19.2'
         commonsIoVersion = '2.5'
         commonsLangVersion = '3.4'
         derbyVersion = '10.12.1.1'

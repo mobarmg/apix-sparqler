@@ -7,7 +7,7 @@ ENV DEBUG_PORT 5008
 ENV JAVA_DEBUG_PORT=${DEBUG_PORT} \
     TOOLBOX_VERSION=LATEST \
     KARAF_VERSION=LATEST \
-    CAMEL_VERSION=LATEST \
+    CAMEL_VERSION=2.19.2 \
     PANDORA_EXTS_VERSION=LATEST \
     FCREPO_HOST=fcrepo \
     FCREPO_PORT=8080 \
@@ -39,7 +39,7 @@ RUN bin/start && \
     bin/client -r 10 -d 5  "feature:repo-add camel ${CAMEL_VERSION}" && \
     bin/client -r 10 -d 5  "feature:repo-add mvn:cool.pandora/pandora-karaf/0.0.1/xml/features" && \
     bin/client -r 10 -d 5  "feature:repo-add mvn:org.fcrepo.camel/fcrepo-camel/4.5.0/xml/features" && \
-    ##bin/client -r 10 -d 5  "feature:install exts-sparqler" && \
+    bin/client -r 10 -d 5  "feature:install exts-sparqler" && \
     sleep 15 && \
     bin/stop
 

@@ -8,7 +8,6 @@ dependencies {
     compile group: 'org.apache.camel', name: 'camel-http4', version: camelVersion
     compile group: 'cool.pandora', name: 'jsonld-java', version: jsonldVersion
     compile group: 'org.fcrepo.camel', name: 'fcrepo-camel', version: fcrepoCamelVersion
-    compile group: 'org.eclipse.rdf4j', name: 'rdf4j-runtime-osgi', version: rdf4jVersion
 
     testCompile group: 'junit', name: 'junit', version: junitVersion
     testCompile group: 'commons-io', name: 'commons-io', version: commonsIoVersion

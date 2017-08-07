@@ -29,6 +29,27 @@ services:
       timeout: 20s
       retries: 10
 
+  encoder:
+    image: pandorasystems/encoder:0.0.5
+    container_name: encoder
+    ports:
+      - "9105:9105"
+    depends_on:
+      apix:
+        condition: service_healthy
+
+  exts-encoder:
+    image: pandorasystems/exts-encoder:0.0.8
+    container_name: exts-encoder
+    environment:
+      - FCREPO_BASEURI=http://localhost:8080/fcrepo/rest
+    depends_on:
+      - encoder
+    links:
+      - fcrepo:localhost
+    volumes:
+      - loris-volume:/tmp/binaries
+
   exts-sparqler:
     image: pandorasystems/exts-sparqler
     container_name: exts-sparqler
@@ -43,13 +64,15 @@ services:
         condition: service_healthy
 
   messaging:
-    image: pandorasystems/messaging:4.8.4
+    image: pandorasystems/messaging
     container_name: messaging
     env_file: apix.env
     ports:
       - "9080:9080"
     environment:
-      - FCREPO_BASEURI=http://localhost:8080/fcrepo/rest
+      - FCREPO_BASEURI=http4://localhost:8080/fcrepo/rest
+      - FUSEKI_BASEURI=http4://fuseki:3030/fuseki/manifests
+
     depends_on:
       - fcrepo
     links:
@@ -83,6 +106,12 @@ volumes:
     driver_opts:
           type: none
           device: /mnt/pandora-data/fcrepo-data
+          o: bind
+  loris-cache:
+  loris-volume:
+    driver_opts:
+          type: none
+          device: /mnt/pandora-data/loris/binaries
           o: bind
   fuseki-volume:
     driver_opts:

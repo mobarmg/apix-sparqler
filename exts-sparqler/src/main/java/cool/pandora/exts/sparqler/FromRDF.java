@@ -21,11 +21,6 @@ import com.github.jsonldjava.utils.JsonUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringReader;
-
-import org.eclipse.rdf4j.model.Model;
-import org.eclipse.rdf4j.rio.RDFFormat;
-import org.eclipse.rdf4j.rio.Rio;
 
 class FromRDF {
 
@@ -39,16 +34,13 @@ class FromRDF {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         InputStream is = classloader.getResourceAsStream("cool/pandora/exts/sparqler/context.json");
         ctxobj = JsonUtils.fromInputStream(is);
-        RDFFormat sesameInputFormat = RDFFormat.NTRIPLES;
         final String graph = Deskolemize.convertSkolem(ntriples);
-        final Model inModel = Rio.parse(new StringReader(graph), "",
-                sesameInputFormat);
-        outobj = JsonLdProcessor.fromRDF(inModel, new RDF4JJSONLDRDFParser());
+        outobj = JsonLdProcessor.fromRDF(graph, opts);
         compactobj = JsonLdProcessor.compact(outobj, ctxobj, opts);
         InputStream fs = classloader.getResourceAsStream("cool/pandora/exts/sparqler/frame.json");
         frame = JsonUtils.fromInputStream(fs);
         frameobj= JsonLdProcessor.frame(compactobj, frame, opts);
-        //System.out.println(JsonUtils.toPrettyString(frameobj));
+        System.out.println(JsonUtils.toPrettyString(frameobj));
         //Files.write(Paths.get("output.json"), JsonUtils.toPrettyString(compactobj).getBytes());
         return JsonUtils.toPrettyString(frameobj);
     }
