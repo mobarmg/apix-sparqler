@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
  */
 public class Deskolemize {
 
-    public boolean isWellKnownURI(String v) {
+    public boolean isWellKnownUri(String v) {
         Pattern p = Pattern.compile("^.+?#genid.+?$");
         Matcher m = p.matcher(v);
         return m.find();
@@ -48,5 +48,11 @@ public class Deskolemize {
         }
         m.appendTail(sb);
         return sb.toString();
+    }
+
+    static boolean isNotEmpty(String input) {
+        Pattern p = Pattern.compile("^<");
+        Matcher m = p.matcher(input);
+        return m.find();
     }
 }

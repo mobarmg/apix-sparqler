@@ -15,10 +15,10 @@
 package cool.pandora.exts.sparqler;
 
 import static java.net.URLEncoder.encode;
-import static org.apache.camel.Exchange.HTTP_CHARACTER_ENCODING;
-import static org.apache.camel.Exchange.HTTP_PATH;
-import static org.apache.camel.Exchange.HTTP_METHOD;
 import static org.apache.camel.Exchange.CONTENT_TYPE;
+import static org.apache.camel.Exchange.HTTP_CHARACTER_ENCODING;
+import static org.apache.camel.Exchange.HTTP_METHOD;
+import static org.apache.camel.Exchange.HTTP_PATH;
 import static org.apache.camel.Exchange.HTTP_RESPONSE_CODE;
 import static org.fcrepo.camel.FcrepoHeaders.FCREPO_IDENTIFIER;
 
@@ -31,6 +31,7 @@ import java.util.HashSet;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.LoggingLevel;
+import org.apache.camel.RuntimeCamelException;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.http4.HttpComponent;
 import org.apache.camel.component.jetty.JettyHttpComponent;
@@ -52,7 +53,8 @@ public class EventRouter extends RouteBuilder {
      * Configure the message route workflow.
      */
     public void configure() throws Exception {
-        JettyHttpComponent jettyComponent = getContext().getComponent("jetty", JettyHttpComponent.class);
+        JettyHttpComponent jettyComponent = getContext().getComponent("jetty", JettyHttpComponent
+                .class);
         jettyComponent.setHttpClientMinThreads(16);
         jettyComponent.setHttpClientMaxThreads(32);
         HttpComponent httpComponent = getContext().getComponent("http4", HttpComponent.class);
@@ -96,7 +98,16 @@ public class EventRouter extends RouteBuilder {
         from("direct:toJsonLd")
                 .routeId("JsonLd")
                 .log(LoggingLevel.INFO, LOGGER, "Serializing n-triples as Json-Ld")
-                .process(e -> e.getIn().setBody(FromRDF.toJsonLd(e.getIn().getBody().toString())))
+                .process(e -> {
+                    try {
+                        e.getIn().setBody(FromRdf.toJsonLd(e.getIn().getBody().toString()));
+
+                    } catch (final Exception ex) {
+                        throw new RuntimeCamelException("Couldn't serialize to JsonLd",
+                                ex);
+
+                    }
+                })
                 .removeHeader(HTTP_ACCEPT)
                 .setHeader(HTTP_METHOD).constant("GET")
                 .setHeader(HTTP_CHARACTER_ENCODING).constant("UTF-8")

@@ -14,6 +14,8 @@
 
 package cool.pandora.exts.sparqler;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 import com.github.jsonldjava.core.JsonLdError;
 import com.github.jsonldjava.core.JsonLdOptions;
 import com.github.jsonldjava.core.JsonLdProcessor;
@@ -22,7 +24,10 @@ import com.github.jsonldjava.utils.JsonUtils;
 import java.io.IOException;
 import java.io.InputStream;
 
-class FromRDF {
+import org.slf4j.Logger;
+
+class FromRdf {
+    private static final Logger log = getLogger(FromRdf.class);
 
     static String toJsonLd(String ntriples) throws IOException, JsonLdError {
         Object ctxobj;
@@ -34,14 +39,22 @@ class FromRDF {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         InputStream is = classloader.getResourceAsStream("cool/pandora/exts/sparqler/context.json");
         ctxobj = JsonUtils.fromInputStream(is);
-        final String graph = Deskolemize.convertSkolem(ntriples);
-        outobj = JsonLdProcessor.fromRDF(graph, opts);
-        compactobj = JsonLdProcessor.compact(outobj, ctxobj, opts);
-        InputStream fs = classloader.getResourceAsStream("cool/pandora/exts/sparqler/frame.json");
-        frame = JsonUtils.fromInputStream(fs);
-        frameobj= JsonLdProcessor.frame(compactobj, frame, opts);
-        System.out.println(JsonUtils.toPrettyString(frameobj));
-        //Files.write(Paths.get("output.json"), JsonUtils.toPrettyString(compactobj).getBytes());
-        return JsonUtils.toPrettyString(frameobj);
+        if (Deskolemize.isNotEmpty(ntriples)) {
+            final String graph = Deskolemize.convertSkolem(ntriples);
+            outobj = JsonLdProcessor.fromRDF(graph, opts);
+            compactobj = JsonLdProcessor.compact(outobj, ctxobj, opts);
+            InputStream fs = classloader.getResourceAsStream("cool/pandora/exts/sparqler/frame"
+                    + ".json");
+            frame = JsonUtils.fromInputStream(fs);
+            frameobj = JsonLdProcessor.frame(compactobj, frame, opts);
+            //System.out.println(JsonUtils.toPrettyString(frameobj));
+            //Files.write(Paths.get("output.json"), JsonUtils.toPrettyString(compactobj).getBytes
+            // ());
+            return JsonUtils.toPrettyString(frameobj);
+        }  else {
+            String empty = "empty SPARQL result set";
+            log.error(empty);
+            throw new IOException();
+        }
     }
 }
