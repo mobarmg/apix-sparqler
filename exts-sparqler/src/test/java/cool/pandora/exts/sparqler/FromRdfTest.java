@@ -17,7 +17,6 @@ package cool.pandora.exts.sparqler;
 import static org.junit.Assert.assertEquals;
 
 import com.github.jsonldjava.core.JsonLdError;
-import com.github.jsonldjava.utils.JsonUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -26,16 +25,18 @@ import java.io.InputStream;
 import org.junit.Test;
 
 public class FromRdfTest {
+    private String contextUri = "cool/pandora/exts/sparqler/context.json";
+    private String frameUri = "cool/pandora/exts/sparqler/frame.json";
 
     @Test
     public void testFromRdf0001() throws IOException, JsonLdError {
         InputStream n3is = getClass().getResourceAsStream("/test1.n3");
         String ntriples = streamToString(n3is);
-        final String framed = FromRdf.toJsonLd(ntriples);
+        final String framed = FromRdf.toJsonLd(ntriples, contextUri, frameUri);
 
         InputStream out = getClass().getResourceAsStream("/test1-out.json");
         final String expected = streamToString(out);
-        System.out.println(JsonUtils.toPrettyString(framed));
+        //System.out.println(JsonUtils.toPrettyString(framed));
         assertEquals(expected, framed);
     }
 
@@ -43,7 +44,20 @@ public class FromRdfTest {
     public void testFromRdf0002() throws IOException, JsonLdError {
         InputStream n3is = getClass().getResourceAsStream("/test2.n3");
         String ntriples = streamToString(n3is);
-        final String framed = FromRdf.toJsonLd(ntriples);
+        final String framed = FromRdf.toJsonLd(ntriples, contextUri, frameUri);
+    }
+
+    @Test
+    public void testFromRdf0003() throws IOException, JsonLdError {
+        String frameUri = "cool/pandora/exts/sparqler/collections_frame.json";
+        InputStream n3is = getClass().getResourceAsStream("/test3.n3");
+        String ntriples = streamToString(n3is);
+        final String framed = FromRdf.toJsonLd(ntriples, contextUri, frameUri);
+
+        InputStream out = getClass().getResourceAsStream("/test3-out.json");
+        final String expected = streamToString(out);
+        //System.out.println(JsonUtils.toPrettyString(framed));
+        assertEquals(expected, framed);
     }
 
     private String streamToString(InputStream is) throws IOException {

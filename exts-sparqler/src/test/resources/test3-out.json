@@ -1,0 +1,278 @@
+{
+  "@context" : {
+    "sc" : "http://iiif.io/api/presentation/2#",
+    "iiif" : "http://iiif.io/api/image/2#",
+    "exif" : "http://www.w3.org/2003/12/exif/ns#",
+    "oa" : "http://www.w3.org/ns/oa#",
+    "cnt" : "http://www.w3.org/2011/content#",
+    "dc" : "http://purl.org/dc/elements/1.1/",
+    "dcterms" : "http://purl.org/dc/terms/",
+    "dctypes" : "http://purl.org/dc/dcmitype/",
+    "doap" : "http://usefulinc.com/ns/doap#",
+    "foaf" : "http://xmlns.com/foaf/0.1/",
+    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "svcs" : "http://rdfs.org/sioc/services#",
+    "as" : "http://www.w3.org/ns/activitystreams#",
+    "license" : {
+      "@id" : "dcterms:rights",
+      "@type" : "@id"
+    },
+    "service" : {
+      "@id" : "svcs:has_service",
+      "@type" : "@id"
+    },
+    "seeAlso" : {
+      "@id" : "rdfs:seeAlso",
+      "@type" : "@id"
+    },
+    "within" : {
+      "@id" : "dcterms:isPartOf",
+      "@type" : "@id"
+    },
+    "profile" : {
+      "@id" : "doap:implements",
+      "@type" : "@id"
+    },
+    "related" : {
+      "@id" : "dcterms:relation",
+      "@type" : "@id"
+    },
+    "logo" : {
+      "@id" : "foaf:logo",
+      "@type" : "@id"
+    },
+    "thumbnail" : {
+      "@id" : "foaf:thumbnail",
+      "@type" : "@id"
+    },
+    "startCanvas" : {
+      "@id" : "sc:hasStartCanvas",
+      "@type" : "@id"
+    },
+    "contentLayer" : {
+      "@id" : "sc:hasContentLayer",
+      "@type" : "@id"
+    },
+    "members" : {
+      "@id" : "sc:hasParts",
+      "@type" : "@id",
+      "@container" : "@list"
+    },
+    "collections" : {
+      "@id" : "sc:hasCollections",
+      "@type" : "@id",
+      "@container" : "@list"
+    },
+    "manifests" : {
+      "@id" : "sc:hasManifests",
+      "@type" : "@id",
+      "@container" : "@list"
+    },
+    "sequences" : {
+      "@id" : "sc:hasSequences",
+      "@type" : "@id",
+      "@container" : "@list"
+    },
+    "canvases" : {
+      "@id" : "sc:hasCanvases",
+      "@type" : "@id",
+      "@container" : "@list"
+    },
+    "resources" : {
+      "@id" : "sc:hasAnnotations",
+      "@type" : "@id",
+      "@container" : "@list"
+    },
+    "images" : {
+      "@id" : "sc:hasImageAnnotations",
+      "@type" : "@id",
+      "@container" : "@list"
+    },
+    "otherContent" : {
+      "@id" : "sc:hasLists",
+      "@type" : "@id",
+      "@container" : "@list"
+    },
+    "structures" : {
+      "@id" : "sc:hasRanges",
+      "@type" : "@id",
+      "@container" : "@list"
+    },
+    "ranges" : {
+      "@id" : "sc:hasRanges",
+      "@type" : "@id",
+      "@container" : "@list"
+    },
+    "metadata" : {
+      "@id" : "sc:metadataLabels",
+      "@type" : "@id",
+      "@container" : "@list"
+    },
+    "description" : "dc:description",
+    "navDate" : "sc:presentationDate",
+    "rendering" : {
+      "@id" : "dcterms:hasFormat",
+      "@type" : "@id"
+    },
+    "height" : {
+      "@id" : "exif:height",
+      "@type" : "xsd:integer"
+    },
+    "width" : {
+      "@id" : "exif:width",
+      "@type" : "xsd:integer"
+    },
+    "attribution" : "sc:attributionLabel",
+    "viewingDirection" : {
+      "@id" : "sc:viewingDirection",
+      "@type" : "@vocab"
+    },
+    "viewingHint" : {
+      "@id" : "sc:viewingHint",
+      "@type" : "@vocab"
+    },
+    "left-to-right" : "sc:leftToRightDirection",
+    "right-to-left" : "sc:rightToLeftDirection",
+    "top-to-bottom" : "sc:topToBottomDirection",
+    "bottom-to-top" : "sc:bottomToTopDirection",
+    "paged" : "sc:pagedHint",
+    "non-paged" : "sc:nonPagedHint",
+    "continuous" : "sc:continuousHint",
+    "individuals" : "sc:individualsHint",
+    "top" : "sc:topHint",
+    "multi-part" : "sc:multiPartHint",
+    "facing-pages" : "sc:facingPagesHint",
+    "motivation" : {
+      "@id" : "oa:motivatedBy",
+      "@type" : "@id"
+    },
+    "resource" : {
+      "@id" : "oa:hasBody",
+      "@type" : "@id"
+    },
+    "on" : {
+      "@id" : "oa:hasTarget",
+      "@type" : "@id"
+    },
+    "full" : {
+      "@id" : "oa:hasSource",
+      "@type" : "@id"
+    },
+    "selector" : {
+      "@id" : "oa:hasSelector",
+      "@type" : "@id"
+    },
+    "stylesheet" : {
+      "@id" : "oa:styledBy",
+      "@type" : "@id"
+    },
+    "style" : "oa:styleClass",
+    "default" : {
+      "@id" : "oa:default",
+      "@type" : "@id"
+    },
+    "item" : {
+      "@id" : "oa:item",
+      "@type" : "@id",
+      "@container" : "@set"
+    },
+    "chars" : "cnt:chars",
+    "encoding" : "cnt:characterEncoding",
+    "bytes" : "cnt:bytes",
+    "format" : "dc:format",
+    "language" : "dc:language",
+    "value" : "rdf:value",
+    "label" : "rdfs:label",
+    "prefix" : "oa:prefix",
+    "suffix" : "oa:suffix",
+    "exact" : "oa:exact",
+    "first" : {
+      "@id" : "as:first",
+      "@type" : "@id"
+    },
+    "last" : {
+      "@id" : "as:last",
+      "@type" : "@id"
+    },
+    "next" : {
+      "@id" : "as:next",
+      "@type" : "@id"
+    },
+    "prev" : {
+      "@id" : "as:prev",
+      "@type" : "@id"
+    },
+    "total" : "as:totalItems",
+    "startIndex" : "as:startIndex"
+  },
+  "@graph" : [ {
+    "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4",
+    "@type" : "sc:Collection",
+    "sc:hasParts" : [ {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/test21",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/test24",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_9999",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/_9999",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/test13",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/test16",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/test26",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/test1",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/test18",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/test15",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/test12",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/test",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/test25",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_4000",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_1000",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/test17",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/test20",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/test14",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/test5",
+      "@type" : "sc:Manifest"
+    }, {
+      "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_4999",
+      "@type" : "sc:Manifest"
+    } ]
+  } ]
+}

@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.LoggingLevel;
@@ -100,8 +101,13 @@ public class EventRouter extends RouteBuilder {
                 .log(LoggingLevel.INFO, LOGGER, "Serializing n-triples as Json-Ld")
                 .process(e -> {
                     try {
-                        e.getIn().setBody(FromRdf.toJsonLd(e.getIn().getBody().toString()));
-
+                        final String contentType = e.getIn().getHeader(SPARQL_QUERY, String.class);
+                        if (Objects.equals(contentType, "manifest")) {
+                            String contextUri = "cool/pandora/exts/sparqler/context.json";
+                            String frameUri = "cool/pandora/exts/sparqler/frame.json";
+                            e.getIn().setBody(FromRdf.toJsonLd(e.getIn().getBody().toString(),
+                                    contextUri, frameUri));
+                        }
                     } catch (final Exception ex) {
                         throw new RuntimeCamelException("Couldn't serialize to JsonLd",
                                 ex);

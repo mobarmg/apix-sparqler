@@ -1,0 +1,10 @@
+{
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@type": "sc:Collection",
+  "members": [{
+    "@embed": true,
+    "@explicit": true,
+    "@type": "",
+    "label": {"@embed": true}
+  }]
+}

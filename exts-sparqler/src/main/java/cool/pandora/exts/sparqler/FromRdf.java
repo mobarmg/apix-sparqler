@@ -29,7 +29,8 @@ import org.slf4j.Logger;
 class FromRdf {
     private static final Logger log = getLogger(FromRdf.class);
 
-    static String toJsonLd(String ntriples) throws IOException, JsonLdError {
+    static String toJsonLd(String ntriples, String contextUri, String frameUri) throws
+            IOException, JsonLdError {
         Object ctxobj;
         Object frame;
         Object outobj;
@@ -37,21 +38,20 @@ class FromRdf {
         Object frameobj;
         final JsonLdOptions opts = new JsonLdOptions("");
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        InputStream is = classloader.getResourceAsStream("cool/pandora/exts/sparqler/context.json");
+        InputStream is = classloader.getResourceAsStream(contextUri);
         ctxobj = JsonUtils.fromInputStream(is);
         if (Deskolemize.isNotEmpty(ntriples)) {
             final String graph = Deskolemize.convertSkolem(ntriples);
             outobj = JsonLdProcessor.fromRDF(graph, opts);
             compactobj = JsonLdProcessor.compact(outobj, ctxobj, opts);
-            InputStream fs = classloader.getResourceAsStream("cool/pandora/exts/sparqler/frame"
-                    + ".json");
+            InputStream fs = classloader.getResourceAsStream(frameUri);
             frame = JsonUtils.fromInputStream(fs);
             frameobj = JsonLdProcessor.frame(compactobj, frame, opts);
             //System.out.println(JsonUtils.toPrettyString(frameobj));
             //Files.write(Paths.get("output.json"), JsonUtils.toPrettyString(compactobj).getBytes
             // ());
             return JsonUtils.toPrettyString(frameobj);
-        }  else {
+        } else {
             String empty = "empty SPARQL result set";
             log.error(empty);
             throw new IOException();

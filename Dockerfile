@@ -45,9 +45,8 @@ RUN bin/start && \
 
 RUN sed -e "s/osgi:/stdout, osgi:/" -i etc/org.ops4j.pax.logging.cfg
 
-COPY repository/cool/pandora/*.cfg etc/
-
 WORKDIR ${KARAF_RUNTIME}/apache-karaf-${KARAF_VERSION}
+COPY repository/cool/pandora/*.cfg etc/
 COPY repository/cool/pandora/entrypoint.sh /entrypoint.sh
 
 RUN chmod 700 /entrypoint.sh

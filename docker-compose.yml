@@ -101,6 +101,10 @@ services:
     volumes:
       - fuseki-volume:/shared
 
+  redis:
+    image: redis/redis:4.0.1-alpine
+    container_name: redis
+
 volumes:
   fcrepo-volume:
     driver_opts:
