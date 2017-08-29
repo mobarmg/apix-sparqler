@@ -35,14 +35,12 @@ import org.apache.camel.LoggingLevel;
 import org.apache.camel.RuntimeCamelException;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.http4.HttpComponent;
-import org.apache.camel.component.jetty.JettyHttpComponent;
-
 import org.slf4j.Logger;
 
 /**
  * EventRouter.
  *
- * @author @christopher-johnson
+ * @author christopher-johnson
  */
 public class EventRouter extends RouteBuilder {
     private static final String SPARQL_QUERY = "type";
@@ -54,10 +52,6 @@ public class EventRouter extends RouteBuilder {
      * Configure the message route workflow.
      */
     public void configure() throws Exception {
-        JettyHttpComponent jettyComponent = getContext().getComponent("jetty", JettyHttpComponent
-                .class);
-        jettyComponent.setHttpClientMinThreads(16);
-        jettyComponent.setHttpClientMaxThreads(32);
         HttpComponent httpComponent = getContext().getComponent("http4", HttpComponent.class);
         httpComponent.setConnectionsPerRoute(100);
 
@@ -111,7 +105,6 @@ public class EventRouter extends RouteBuilder {
                     } catch (final Exception ex) {
                         throw new RuntimeCamelException("Couldn't serialize to JsonLd",
                                 ex);
-
                     }
                 })
                 .removeHeader(HTTP_ACCEPT)

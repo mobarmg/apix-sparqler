@@ -1,18 +1,25 @@
-APIX-SPARQLER
+Api-X Sparqler
 ===================================
 
-An API-X extension for serializing SPARQL Results.
+
+### Image on Docker Hub
+`pandorasystems/exts-sparqler`
+-----------------
+[![](https://images.microbadger.com/badges/image/pandorasystems/exts-sparqler.svg)](https://microbadger.com/images/pandorasystems/exts-sparqler "pandorasystems/exts-sparqler")[![](https://images.microbadger.com/badges/version/pandorasystems/exts-sparqler.svg)](https://microbadger.com/images/pandorasystems/exts-sparqler "pandorasystems/exts-sparqler")
+
+
+This contains image serialization and encoding extensions for API-X.
+These are OSGi services that extend the functionality of a [Fedora4](https://wiki.duraspace.org/display/FF/Fedora+Repository+Home) repository.
+
+Extensions
+----------
+* [`exts-sparqler`](exts-sparqler): Queries a triplestore and serializes a JSON-LD compacted response.
 
 Building
 --------
-Create gradle.properties
-```sh 
-    $ echo "version=0.0.1" > gradle.properties
-```
-
 Create OSGI bundles
 ```sh 
-    $ gradle install
+    $ gradle build
 ```
 Copy bundles from local Maven repository to Docker Build directory
 ```sh      
