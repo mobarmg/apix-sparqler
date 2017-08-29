@@ -5,14 +5,9 @@ An API-X extension for serializing SPARQL Results.
 
 Building
 --------
-Create gradle.properties
-```sh 
-    $ echo "version=0.0.1" > gradle.properties
-```
-
 Create OSGI bundles
 ```sh 
-    $ gradle install
+    $ gradle build
 ```
 Copy bundles from local Maven repository to Docker Build directory
 ```sh      
