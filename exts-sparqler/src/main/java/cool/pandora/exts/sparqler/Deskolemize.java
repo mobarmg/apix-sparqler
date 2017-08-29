@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 /**
  * Deskolemize.
  *
- * @author @christopher-johnson
+ * @author christopher-johnson
  */
 public class Deskolemize {
 
