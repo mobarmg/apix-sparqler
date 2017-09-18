@@ -7,7 +7,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
-        classpath "com.avast.gradle:gradle-docker-compose-plugin:0.5.1"
     }
 }
 
@@ -48,8 +47,6 @@ task processBuildTools(type: Copy) {
     }
     into 'build'
 }
-
-apply plugin: 'docker-compose'
 
 configure(allprojects) { project ->
     apply plugin: 'maven'
@@ -199,7 +196,6 @@ configure(subprojects) { subproject ->
         toolVersion = "0.7.9"
     }
 
-
     license {
         include "**/*.java"
         header rootProject.file('build/license/HEADER.txt')
@@ -285,7 +281,7 @@ configure(subprojects) { subproject ->
 project("exts-sparqler") {
     description = 'RDF to JSON-LD serialization service'
     dependencies {
-        compile group: 'org.apache.camel', name: 'camel-jetty', version: camelVersion
+        compile group: 'org.apache.camel', name: 'camel-jetty9', version: camelVersion
         compile group: 'org.apache.camel', name: 'camel-blueprint', version: camelVersion
         compile group: 'org.apache.camel', name: 'camel-saxon', version: camelVersion
         compile group: 'org.apache.camel', name: 'camel-http4', version: camelVersion
@@ -337,5 +333,3 @@ project("sparqler-karaf") {
         }
     }
 }
-
-
