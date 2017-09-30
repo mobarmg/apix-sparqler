@@ -37,12 +37,14 @@ class FromRdf {
         Object compactobj;
         Object frameobj;
         final JsonLdOptions opts = new JsonLdOptions("");
+        opts.setUseNativeTypes(true);
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         InputStream is = classloader.getResourceAsStream(contextUri);
         ctxobj = JsonUtils.fromInputStream(is);
         if (Deskolemize.isNotEmpty(ntriples)) {
             final String graph = Deskolemize.convertSkolem(ntriples);
             outobj = JsonLdProcessor.fromRDF(graph, opts);
+            log.debug(JsonUtils.toPrettyString(outobj));
             compactobj = JsonLdProcessor.compact(outobj, ctxobj, opts);
             InputStream fs = classloader.getResourceAsStream(frameUri);
             frame = JsonUtils.fromInputStream(fs);

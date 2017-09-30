@@ -38,11 +38,39 @@ services:
       - "9104:9104"
     environment:
       - FUSEKI_BASEURI=http4://fuseki:3030
-    networks:
-      - apix-ipv6
     depends_on:
       apix:
         condition: service_healthy
+    networks:
+      - apix-ipv6
+
+  apix-sparqler-public-api:
+    image: pandorasystems/apix-sparqler-public-api
+    container_name: apix-sparqler-public-api
+    ports:
+      - "3099:3000"
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - apix-ipv6
+
+  image-services:
+    image: pandorasystems/image-services
+    container_name: image-services
+    ports:
+      - "9105:9105"
+    environment:
+      - FCREPO_BASEURI=http://localhost:8080/fcrepo/rest
+    depends_on:
+      apix:
+        condition: service_healthy
+    volumes:
+      - loris-volume:/tmp/binaries
+    links:
+      - fcrepo:localhost
+    networks:
+      - apix-ipv6
 
   messaging:
     image: pandorasystems/messaging
@@ -97,6 +125,8 @@ services:
       interval: 45s
       timeout: 20s
       retries: 1
+    networks:
+      - apix-ipv6
 
 volumes:
   fcrepo-volume:

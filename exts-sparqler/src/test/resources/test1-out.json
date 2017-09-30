@@ -53,14 +53,8 @@
       "@type" : "@id",
       "@container" : "@list"
     },
-    "height" : {
-      "@id" : "exif:height",
-      "@type" : "xsd:integer"
-    },
-    "width" : {
-      "@id" : "exif:width",
-      "@type" : "xsd:integer"
-    },
+    "height" : "exif:height",
+    "width" : "exif:width",
     "viewingDirection" : {
       "@id" : "sc:viewingDirection",
       "@type" : "@vocab"
@@ -108,8 +102,8 @@
               "@type" : "http://iiif.io/api/image/2/context.json",
               "profile" : "http://iiif.io/api/image/2/level1.json"
             },
-            "height" : "574",
-            "width" : "984"
+            "height" : 574,
+            "width" : 984
           },
           "on" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000000",
           "motivation" : "sc:painting"
@@ -119,8 +113,8 @@
           "@type" : "sc:AnnotationList"
         } ],
         "label" : "00000000",
-        "height" : "574",
-        "width" : "984"
+        "height" : 574,
+        "width" : 984
       }, {
         "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000001",
         "@type" : "sc:Canvas",
@@ -136,8 +130,8 @@
               "@type" : "http://iiif.io/api/image/2/context.json",
               "profile" : "http://iiif.io/api/image/2/level1.json"
             },
-            "height" : "614",
-            "width" : "992"
+            "height" : 614,
+            "width" : 992
           },
           "on" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000001",
           "motivation" : "sc:painting"
@@ -147,8 +141,8 @@
           "@type" : "sc:AnnotationList"
         } ],
         "label" : "00000001",
-        "height" : "614",
-        "width" : "992"
+        "height" : 614,
+        "width" : 992
       }, {
         "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000002",
         "@type" : "sc:Canvas",
@@ -164,8 +158,8 @@
               "@type" : "http://iiif.io/api/image/2/context.json",
               "profile" : "http://iiif.io/api/image/2/level1.json"
             },
-            "height" : "608",
-            "width" : "992"
+            "height" : 608,
+            "width" : 992
           },
           "on" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000002",
           "motivation" : "sc:painting"
@@ -175,8 +169,8 @@
           "@type" : "sc:AnnotationList"
         } ],
         "label" : "00000002",
-        "height" : "608",
-        "width" : "992"
+        "height" : 608,
+        "width" : 992
       }, {
         "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000003",
         "@type" : "sc:Canvas",
@@ -192,8 +186,8 @@
               "@type" : "http://iiif.io/api/image/2/context.json",
               "profile" : "http://iiif.io/api/image/2/level1.json"
             },
-            "height" : "599",
-            "width" : "984"
+            "height" : 599,
+            "width" : 984
           },
           "on" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000003",
           "motivation" : "sc:painting"
@@ -203,8 +197,8 @@
           "@type" : "sc:AnnotationList"
         } ],
         "label" : "00000003",
-        "height" : "599",
-        "width" : "984"
+        "height" : 599,
+        "width" : 984
       }, {
         "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000004",
         "@type" : "sc:Canvas",
@@ -220,8 +214,8 @@
               "@type" : "http://iiif.io/api/image/2/context.json",
               "profile" : "http://iiif.io/api/image/2/level1.json"
             },
-            "height" : "598",
-            "width" : "984"
+            "height" : 598,
+            "width" : 984
           },
           "on" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000004",
           "motivation" : "sc:painting"
@@ -231,8 +225,8 @@
           "@type" : "sc:AnnotationList"
         } ],
         "label" : "00000004",
-        "height" : "598",
-        "width" : "984"
+        "height" : 598,
+        "width" : 984
       }, {
         "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000005",
         "@type" : "sc:Canvas",
@@ -248,8 +242,8 @@
               "@type" : "http://iiif.io/api/image/2/context.json",
               "profile" : "http://iiif.io/api/image/2/level1.json"
             },
-            "height" : "596",
-            "width" : "984"
+            "height" : 596,
+            "width" : 984
           },
           "on" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000005",
           "motivation" : "sc:painting"
@@ -259,8 +253,8 @@
           "@type" : "sc:AnnotationList"
         } ],
         "label" : "00000005",
-        "height" : "596",
-        "width" : "984"
+        "height" : 596,
+        "width" : 984
       }, {
         "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000006",
         "@type" : "sc:Canvas",
@@ -276,8 +270,8 @@
               "@type" : "http://iiif.io/api/image/2/context.json",
               "profile" : "http://iiif.io/api/image/2/level1.json"
             },
-            "height" : "611",
-            "width" : "992"
+            "height" : 611,
+            "width" : 992
           },
           "on" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000006",
           "motivation" : "sc:painting"
@@ -287,8 +281,8 @@
           "@type" : "sc:AnnotationList"
         } ],
         "label" : "00000006",
-        "height" : "611",
-        "width" : "992"
+        "height" : 611,
+        "width" : 992
       }, {
         "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000007",
         "@type" : "sc:Canvas",
@@ -304,8 +298,8 @@
               "@type" : "http://iiif.io/api/image/2/context.json",
               "profile" : "http://iiif.io/api/image/2/level1.json"
             },
-            "height" : "603",
-            "width" : "992"
+            "height" : 603,
+            "width" : 992
           },
           "on" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000007",
           "motivation" : "sc:painting"
@@ -315,8 +309,8 @@
           "@type" : "sc:AnnotationList"
         } ],
         "label" : "00000007",
-        "height" : "603",
-        "width" : "992"
+        "height" : 603,
+        "width" : 992
       }, {
         "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000008",
         "@type" : "sc:Canvas",
@@ -332,8 +326,8 @@
               "@type" : "http://iiif.io/api/image/2/context.json",
               "profile" : "http://iiif.io/api/image/2/level1.json"
             },
-            "height" : "598",
-            "width" : "976"
+            "height" : 598,
+            "width" : 976
           },
           "on" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000008",
           "motivation" : "sc:painting"
@@ -343,8 +337,8 @@
           "@type" : "sc:AnnotationList"
         } ],
         "label" : "00000008",
-        "height" : "598",
-        "width" : "976"
+        "height" : 598,
+        "width" : 976
       }, {
         "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000009",
         "@type" : "sc:Canvas",
@@ -360,8 +354,8 @@
               "@type" : "http://iiif.io/api/image/2/context.json",
               "profile" : "http://iiif.io/api/image/2/level1.json"
             },
-            "height" : "594",
-            "width" : "992"
+            "height" : 594,
+            "width" : 992
           },
           "on" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000009",
           "motivation" : "sc:painting"
@@ -371,8 +365,8 @@
           "@type" : "sc:AnnotationList"
         } ],
         "label" : "00000009",
-        "height" : "594",
-        "width" : "992"
+        "height" : 594,
+        "width" : 992
       }, {
         "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000010",
         "@type" : "sc:Canvas",
@@ -388,8 +382,8 @@
               "@type" : "http://iiif.io/api/image/2/context.json",
               "profile" : "http://iiif.io/api/image/2/level1.json"
             },
-            "height" : "594",
-            "width" : "984"
+            "height" : 594,
+            "width" : 984
           },
           "on" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000010",
           "motivation" : "sc:painting"
@@ -399,8 +393,8 @@
           "@type" : "sc:AnnotationList"
         } ],
         "label" : "00000010",
-        "height" : "594",
-        "width" : "984"
+        "height" : 594,
+        "width" : 984
       }, {
         "@id" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000011",
         "@type" : "sc:Canvas",
@@ -416,8 +410,8 @@
               "@type" : "http://iiif.io/api/image/2/context.json",
               "profile" : "http://iiif.io/api/image/2/level1.json"
             },
-            "height" : "601",
-            "width" : "976"
+            "height" : 601,
+            "width" : 976
           },
           "on" : "http://localhost:8080/fcrepo/rest/collection/ak4/0_11/canvas/00000011",
           "motivation" : "sc:painting"
@@ -427,8 +421,8 @@
           "@type" : "sc:AnnotationList"
         } ],
         "label" : "00000011",
-        "height" : "601",
-        "width" : "976"
+        "height" : 601,
+        "width" : 976
       } ],
       "viewingHint" : "paged"
     } ],
